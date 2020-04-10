@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import data from "./data";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const url =
+  "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=boston_celtics";
 
 const Image = ({ imageUrl }) => (
   <div
@@ -116,7 +119,31 @@ const Header = ({ teamData }) => (
 );
 
 const App = () => {
-  const teamData = data.teams[0];
+  const [teamData, setTeamData] = useState();
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(url);
+      res
+        .json()
+        .then(res => setTeamData(res.teams[0]))
+        .catch(err => setError("Error fetching team data"));
+    }
+
+    fetchData();
+  });
+
+  if (error) {
+    return <div>Sorry we are experiencing technical difficulties</div>;
+  }
+  if (!teamData || true) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "200px" }}>
+        <CircularProgress />
+      </div>
+    );
+  }
   return (
     <div style={{ margin: "50px" }}>
       <Header teamData={teamData} />
