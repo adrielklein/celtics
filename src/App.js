@@ -137,7 +137,7 @@ const App = () => {
   if (error) {
     return <div>Sorry we are experiencing technical difficulties</div>;
   }
-  if (!teamData || true) {
+  if (!teamData) {
     return (
       <div style={{ textAlign: "center", marginTop: "200px" }}>
         <CircularProgress />
