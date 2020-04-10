@@ -132,7 +132,7 @@ const App = () => {
     }
 
     fetchData();
-  });
+  }, []);
 
   if (error) {
     return <div>Sorry we are experiencing technical difficulties</div>;
