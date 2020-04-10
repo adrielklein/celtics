@@ -23,31 +23,27 @@ const Image = ({ imageUrl }) => (
   </div>
 );
 
-const Description = ({ teamData }) => (
+const Panel = ({ header, body }) => (
   <ExpansionPanel>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
       aria-controls="panel1a-content"
       id="panel1a-header"
     >
-      <h1>Description</h1>
+      <h1>{header}</h1>
     </ExpansionPanelSummary>
-    <ExpansionPanelDetails>
-      <p>{teamData.strDescriptionEN}</p>
-    </ExpansionPanelDetails>
+    <ExpansionPanelDetails>{body}</ExpansionPanelDetails>
   </ExpansionPanel>
 );
 
+const Description = ({ teamData }) => (
+  <Panel header="Description" body={<p>{teamData.strDescriptionEN}</p>} />
+);
+
 const Gallery = ({ teamData }) => (
-  <ExpansionPanel>
-    <ExpansionPanelSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-    >
-      <h1>Gallery</h1>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails>
+  <Panel
+    header="Gallery"
+    body={
       <div
         style={{
           display: "grid",
@@ -60,26 +56,20 @@ const Gallery = ({ teamData }) => (
         <Image imageUrl={teamData.strTeamFanart3} />
         <Image imageUrl={teamData.strTeamFanart4} />
       </div>
-    </ExpansionPanelDetails>
-  </ExpansionPanel>
+    }
+  />
 );
 
 const Stadium = ({ teamData }) => (
-  <ExpansionPanel>
-    <ExpansionPanelSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-    >
-      <h1>Stadium</h1>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails>
+  <Panel
+    header="Stadium"
+    body={
       <div>
         <Image imageUrl={teamData.strStadiumThumb} />
         <p>{teamData.strStadiumDescription}</p>
       </div>
-    </ExpansionPanelDetails>
-  </ExpansionPanel>
+    }
+  />
 );
 
 const logoDimension = "60px";
