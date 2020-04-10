@@ -79,18 +79,36 @@ const Stadium = ({ teamData }) => (
   </ExpansionPanel>
 );
 
+const logoDimension = "60px";
+
 const Header = ({ teamData }) => (
-  <div>
+  <div style={{ textAlign: "center", marginBottom: "20px" }}>
     <img
-      style={{ height: "100px", width: "100px", display: "inline-block" }}
+      style={{
+        height: logoDimension,
+        width: logoDimension,
+        display: "inline-block"
+      }}
       src={teamData.strTeamBadge}
       alt="team image"
     />
-    <div style={{ display: "inline-block", fontSize: "50px" }}>
-      <p style={{ fontSize: "50px" }}>{teamData.strTeam}</p>
-    </div>
+
+    <h1
+      style={{
+        fontSize: "60px",
+        display: "inline-block",
+        margin: "0px",
+        marginHorizontal: "10px"
+      }}
+    >
+      {teamData.strTeam}
+    </h1>
     <img
-      style={{ height: "100px", width: "100px", display: "inline-block" }}
+      style={{
+        height: logoDimension,
+        width: logoDimension,
+        display: "inline-block"
+      }}
       src={teamData.strTeamBadge}
       alt="team image"
     />
